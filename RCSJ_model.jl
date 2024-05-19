@@ -8,7 +8,7 @@ function phase_lock_areas!(eps)
 	function RSCJ!(dtheta, theta, p, t)
 		eps, omega, A, B = p
 		dtheta[1] = theta[2]/eps
-		dtheta[2] = -sin(theta[1]) + B + A*cos(omega*theta[3])
+		dtheta[2] = -theta[2]/eps -sin(theta[1]) + B + A*cos(omega*theta[3])
 		dtheta[3] = 1
 		nothing
 	end
