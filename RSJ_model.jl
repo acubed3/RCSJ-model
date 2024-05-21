@@ -47,11 +47,11 @@ function phase_lock_areas!()
 
 	@showprogress Threads.@threads for i=1:B_size  
 		for j=1:A_size
-			wm_values[i,j] = winding_number!(omega, A_values[j], B_values[i], D, t0)
+			wm_values[i,j] = winding_number!(omega, A_values[j], B_values[i], t0)
 		end
 	end
 
-	name_pattern = join(["ph_lock_A_max_", string(A_max)])
+	name_pattern = join(["ph_lock_omega_", string(omega)])
 	name_pattern = replace(name_pattern, "." => "_")
 	name = join([name_pattern, ".csv"])
 
