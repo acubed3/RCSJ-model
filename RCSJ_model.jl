@@ -3,7 +3,9 @@ using Distributions
 using DelimitedFiles
 using ProgressMeter
 
-function phase_lock_areas!(eps)
+function phase_lock_areas!(omega, eps)
+
+	@show(eps)
 
 	function RSCJ!(dtheta, theta, p, t)
 		eps, omega, A, B = p
@@ -18,7 +20,7 @@ function phase_lock_areas!(eps)
 		tspan = (0., t0)
 		
 		p = (eps, omega, A, B)
-		prob = ODEProblem(RSCJ!, theta_0, tspan, p, reltol=1e-10)
+		prob = ODEProblem(RSCJ!, theta_0, tspan, p, abstol=1e-10, reltol=1e-10)
 		sol = solve(prob)
 		
 		phase = last(sol.u)[1]
@@ -28,13 +30,13 @@ function phase_lock_areas!(eps)
 
 	A_min = -2.0;
 	A_max = +8.0;
-	A_step = 0.01;
+	A_step = 0.005;
 
 	A_values = range(A_min, A_max, step=A_step) |> collect;
 
 	B_min = -2.0;
 	B_max = 2.0;
-	B_step = 0.01;
+	B_step = 0.005;
 
 	B_values = range(B_min, B_max, step=B_step) |> collect;
 
@@ -59,3 +61,8 @@ function phase_lock_areas!(eps)
 	writedlm(name,  wm_values, ',')
 	
 end
+
+omega = parse(Float64, ARG[1])
+eps = parse(Float64, ARGS[2])
+
+phase_lock_areas!(omega, eps)
