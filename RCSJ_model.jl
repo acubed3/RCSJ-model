@@ -18,7 +18,7 @@ function phase_lock_areas!(eps)
 		tspan = (0., t0)
 		
 		p = (eps, omega, A, B)
-		prob = ODEProblem(RSCJ!, theta_0, tspan, p)
+		prob = ODEProblem(RSCJ!, theta_0, tspan, p, reltol=1e-10)
 		sol = solve(prob)
 		
 		phase = last(sol.u)[1]
