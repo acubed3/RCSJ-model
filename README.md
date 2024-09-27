@@ -1,3 +1,3 @@
-# RSCJ-model
+# Dynamical System on Torus and All Around It
 
-This is repository to compute winding number of Josephson junction phase as the function of external parameters.
+There is the collection of Julia and Wolfram Language based scripts, that compute rotation number, Lyapunov exponents and so on for dynamical systems on torus
