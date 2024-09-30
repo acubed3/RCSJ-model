@@ -27,9 +27,9 @@ function phase_lock_areas!(omega)
 		
 		w_final = last(sol.u)[2]
 		if abs(w_final) < 1.0
-			ratio = (1+abs(w_final)^2)/(1-abs(w_final)^2)
+			ratio = (1+abs(w_final))/(1-abs(w_final))
 		else
-			ratio = (1+abs(w_final-1e-5)^2)/(1-abs(w_final-1e-5)^2)
+			ratio = (1+abs(w_final-1e-6))/(1-abs(w_final-1e-6))
 		end 
 		
 		return ratio
