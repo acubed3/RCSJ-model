@@ -37,13 +37,13 @@ function phase_lock_areas!(omega, eps, D)
 
 	A_min = -4.0;
 	A_max = +4.0;
-	A_step = 0.005;
+	A_step = 0.1;
 
 	A_values = range(A_min, A_max, step=A_step) |> collect;
 
 	B_min = -4.0;
 	B_max = +4.0;
-	B_step = 0.005;
+	B_step = 0.1;
 
 	B_values = range(B_min, B_max, step=B_step) |> collect;
 
@@ -54,7 +54,7 @@ function phase_lock_areas!(omega, eps, D)
 
 	@showprogress Threads.@threads for i=1:B_size  
 		for j=1:A_size
-			layp_exps[i,j] = lyapunov_exp!(omega, A_values[j], B_values[i], D, eps, t0)
+			ratios[i,j] = lyapunov_exp!(omega, A_values[j], B_values[i], D, eps, t0)
 		end
 	end
 
